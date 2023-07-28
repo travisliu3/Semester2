@@ -1,0 +1,99 @@
+/*
+*****************************************************************************
+			OOP244-Workshop-6, reflection
+Full Name  : Travis Liu
+e-mail     : tliu84@myseneca.ca
+Student ID#: 156740201
+Date       : 1 July, 2022
+Section    : ZCC
+
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+In this worksho I learnt the following concepts;
+1.Implement a copy constructor and a copy assignment operator.
+eg-Basket::Basket(const Basket& basket) {
+		m_cnt = basket.m_cnt;
+		m_price = basket.m_price;
+		m_fruits = nullptr;
+		m_fruits = new Fruit[m_cnt];
+		for (int i = 0; i < m_cnt; i++)
+		{
+			strcpy(m_fruits[i].m_name, basket.m_fruits[i].m_name);
+			m_fruits[i].m_qty = basket.m_fruits[i].m_qty;
+		}
+	}
+In the above example, I created a copy constructor by passing an object of Basket as
+a parameter. Afterwords, I did a shallow copy then a deep copy of all elements from object
+basket to the current object.
+
+	Basket& Basket::operator=(const Basket& basket) {
+		m_cnt = basket.m_cnt;
+		m_price = basket.m_price;
+		m_fruits = nullptr;
+		m_fruits = new Fruit[m_cnt];
+		for (int i = 0; i < m_cnt; i++)
+		{
+			strcpy(m_fruits[i].m_name, basket.m_fruits[i].m_name);
+			m_fruits[i].m_qty = basket.m_fruits[i].m_qty;
+		}
+		return *this;
+	}
+In the above example, I created a copy assignemnt operator by passing an object of Basket as
+a parameter to the assignment operator overload. Afterwords, I did a shallow copy then a deep
+copy of all elements from object basket to the current object.
+
+
+2.To manage a class with dynamic resources
+eg-m_fruits = nullptr;
+		m_fruits = new Fruit[m_cnt];
+		for (int i = 0; i < m_cnt; i++)
+		{
+			strcpy(m_fruits[i].m_name, basket.m_fruits[i].m_name);
+			m_fruits[i].m_qty = basket.m_fruits[i].m_qty;
+		}
+In the above example, I dynamically allocated memory to object m_fruits of type Fruit and copied the
+contents of another Fruit to the current m_fruits object. When the object of type Basket goes out of
+scope, the Basket destructor releses the dynamically allocated momory of Fruit object.
+
+
+3.To use existing objects to create new ones or to assign values to existing objects based on other existing ones.
+eg-Basket::Basket(const Basket& basket) {
+		m_cnt = basket.m_cnt;
+		m_price = basket.m_price;
+		m_fruits = nullptr;
+		m_fruits = new Fruit[m_cnt];
+		for (int i = 0; i < m_cnt; i++)
+		{
+			strcpy(m_fruits[i].m_name, basket.m_fruits[i].m_name);
+			m_fruits[i].m_qty = basket.m_fruits[i].m_qty;
+		}
+	}
+The above example is of a copy constructor's example, I did a shallow copy on m_cnt and m_price and a deep
+copy on m_fruits by using another object of same type which is Basket. Similarly, I overloaded the assignment
+operator to copy the data members of one Basket object to another object Basket object.
+
+
+4.To implement custom input/output operators.
+eg- void operator<<(std::ostream& os, Basket basket) {
+		if (basket.cnt())
+		{
+			os << "Basket Content: " << endl;
+			os.setf(ios::fixed);
+			os.precision(2);
+			for (int i = 0; i < basket.cnt(); i++)
+			{
+				os.width(10);
+				os << basket.fruits()[i].m_name << ": " << basket.fruits()[i].m_qty << "kg" << endl;
+			}
+			os << "Price: " << basket.price() << endl;
+			os.unsetf(ios::fixed);
+		}
+		else
+		{
+			os << "The basket is empty!" << endl;
+		}
+	}
+In the above example, I implementd a custom output operator which is represented by 'os' and can perform all
+output stream actions. I referenced ostream object under std to object called os.

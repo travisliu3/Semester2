@@ -1,0 +1,60 @@
+/*
+*****************************************************************************
+				OOP244-Workshop-5, Reflection
+Full Name  : Travis Liu
+e-mail     : tliu84@myseneca.ca
+Student ID#: 156740201
+Date       : 16 June, 2022
+Section    : ZCC
+
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+In this workshop, I learned the following concepts:
+operator keyword is used to declare any functionality overload of operators like -=, +=, >>, etc.
+
+1.define and create binary member operators.
+eg-void Hero::operator-=(int powlev) {
+		powerlevel -= powlev;
+	}
+In the above example, I defined an assignment operator of symbol '-=' by using keyword operator
+before the symbol. It mean whenever an object of class Hero is assigned an 'int' using '-=' the
+variable called powerlevel will be subtracted by the incomming 'int' from the parameter.
+
+
+2.define and create various type conversion operators.
+eg-Book::operator int() {
+		return m_num_chapters;
+	}
+In the above example, I defined a typr cast operator of type int. It means whenever a Book type
+is type casted into an int, it will return the private instance 'm_num_chapters'.
+
+
+3.define and create unary operators.
+eg-void Chapter::operator++() {
+		m_num_pages++;
+	}
+Ther are two types of uniry operators, post-fix and pre-fix. The pre-fix operator is identified
+by using int keyword in the parameter list like this 'void operator++(int);'.
+The above example is a post-fix. It means whenever a Chapter class object use a post-fix '++'
+operator the private member instance 'm_num_pages' will be increamented by 1.
+
+void Book::operator++(int) {
+		(this->m_num_chapters)++;
+	}
+The above example is a pre-fix. It means whenever a Book class object use a pre-fix '++'
+operator the private member instance 'm_num_chapters' will be increamented by 1.
+
+
+4.define and create helper binary operator between classes.
+eg-bool operator>(Hero hero1, Hero hero2) {
+		if (hero1.powerlev() > hero2.powerlev())
+		{
+			return true;
+		}
+		return false;
+	}
+In the above example, the helper binary operator > is defined by usinf the operator keyword and
+passing it two parameters both of class type Hero. It compares the instance variable 'powerlevel'
+of both the object by calling to powerlev() function respectively and returns a bool type accordingly.

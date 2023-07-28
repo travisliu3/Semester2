@@ -1,0 +1,6 @@
+﻿  Bar.cpp
+C:\college\Semester2\OOP244\Workshop3\w3p2\Bar.cpp(54,58): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  BarChart.cpp
+  main.cpp
+  Generating Code...
+  w3p2.vcxproj -> C:\college\Semester2\OOP244\Workshop3\w3p2\x64\Debug\w3p2.exe

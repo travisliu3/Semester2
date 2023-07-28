@@ -1,0 +1,98 @@
+/*
+*****************************************************************************
+			OOP244-Workshop-3, reflection
+Full Name  : Travis Liu
+e-mail     : tliu84@myseneca.ca
+Student ID#: 156740201
+Date       : 1 June, 2022
+Section    : ZCC
+
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+In this workshop I learnt about 'class' data type which are:
+1.to define a class type.
+eg-class Bar {
+		char title[MAX_TITLE_LENGTH + 1];
+		char filler;
+	.
+	.
+	.
+		// draws bar
+		void draw() const;
+	};
+In the above example, I created a class named Bar and defined it with
+member functions and variables like 'char title[MAX_TITLE_LENGTH + 1];'
+and 'void draw() const;'.
+
+
+2.to privatize data within the class type.
+eg-class BarChart {
+		char* titleofchart;
+		Bar* bars;
+		char filler;
+		int noofbars;
+		int noofsamples = 0;
+	.
+	.
+	.
+	}
+In the above example, I privatized some data from the client code by not
+including the data under the public section of class because in a class the
+data is private by default.
+
+
+3.to instantiate an object of class type.
+eg-Bar* bars;
+In the above example, I declared a pointer variable of type 'class Bar'
+and used it to point to a dynamic location.
+
+
+4.to use member functions to query the state of an object.
+eg-void Bar::draw() const {
+		if (isBarvalid(samplevalue))
+		{
+			int remaininglength = MAX_TITLE_LENGTH - strlen(title);
+			cout.width(MAX_TITLE_LENGTH);
+			cout.fill('.');
+			cout.setf(ios::left);
+			cout << title;
+			cout << '|';
+			for (int i = 0; i < samplevalue/2; i++)
+			{
+				cout << filler;
+			}
+			cout << endl;
+		}
+	}
+In the above example, I used a fuction from class Bar to display a bar diagram in
+which I used 'cout << title;' and 'cout << filler;' to query the state of private
+members of the class. The private members of a calss can be accesed only by functions
+inside that class.
+
+
+5.to use member functions to change the state of an object.
+eg-void BarChart::init(const char* title, int noOfSampels, char fill) {
+		titleofchart = new char[strlen(title) + 1];
+		strcpy(titleofchart, title);
+		filler = fill;
+		noofbars = noOfSampels;
+		bars = new Bar[noofbars];
+	}
+In the above example, I used a fuction from class BarChart to initialize the private
+members of the class like 'strcpy(titleofchart, title);' 'filler = fill;'
+'noofbars = noOfSampels;' and 'bars = new Bar[noofbars];' which changes the state of
+the object. The private members of a calss can be accesed only by functions inside that
+class.
+
+
+6.to use standard library facilities to format data inserted into the output stream.
+eg-	cout.width(MAX_TITLE_LENGTH);
+		cout.fill('.');
+		cout.setf(ios::left);
+		cout << title;
+In the above example, I used the standard library facilities of 'cout' function to format
+the display of my data. Like 'cout.width(MAX_TITLE_LENGTH);' sets the width of of text to
+20, 'cout.fill('.');' fills the empty spaces with '.' charecter and 'cout.setf(ios::left);'
+sets the alignemt of the text to left.

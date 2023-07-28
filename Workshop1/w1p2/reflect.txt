@@ -1,0 +1,61 @@
+/*
+*****************************************************************************
+                        OOP244-Workshop-1, reflection
+Full Name  : Travis Liu
+e-mail     : tliu84@myseneca.ca
+Student ID#: 156740201
+Date       : 23 May, 2022
+Section    : ZCC
+
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+In this workshop 1, I learnt two things:
+1.Importance of the keyword 'namespace'.
+2.Importance of making modules for specific fuctions.
+
+I learnt the syntax of calling vriables using namespace as well like - 'quizzer::IsQuizValid()' == 1 or
+typing - 'using namespace sdds' to use all the identifiers under sdds in part one of the workshop.
+example of namespace:
+namespace sdds {
+    const int MAX_TITLE_LENGTH = 50;
+    struct ShoppingRec {
+        char m_title[MAX_TITLE_LENGTH + 1];
+        int m_quantity;
+        bool m_bought;
+    };
+.
+.
+.
+int listMenu() {
+        cout << "-->>> My Shopping List <<<--" << endl;
+        displayList();
+        cout << "----------------------------" << endl
+            << "1- Toggle bought Item" << endl
+            << "2- Add Shopping Item" << endl
+            << "3- Remove Shopping Item" << endl
+           << "4- Remove bought Items" << endl
+            << "5- Clear List" << endl
+            << "0- Exit" << endl << "> ";
+        return readInt(0, 5);
+    }
+}
+In the above example I created a namespace called sdds which is used in other modules to call the functions
+inside the namespace sdds without any conflict with the other modules in the program that are using the same
+structures. The keyword 'namespace' hides the identifiers from other modules.
+
+At the begining, I defined all the same structures at the header file of different modules because of which
+I was getting an error of defining the same structure more than once. After thinking, analysing the code and
+reviewing the lecture I realised since I am including the header files in the module containg main and using
+the same namespace sdds for all header files, the variables and the structure are being declared more than once
+in different header file. To solve this issue I removed the structure and variables from header file and defined
+them in their corresponding .cpp file.
+
+
+Creating modules helped me in organising and focusing on one section of a code at a time and navigate easily through
+the code as the code was very long and comlicated to look and analyse in one module.
+In part two of the workshop, I created different modules based on there specific functionality like - 'question'
+module which contained functions related to questions and its answers:
+	void isquestionvalid(struct question* question, int* validquiz, int i);
+	void isanscorrect(struct question* question, struct quiz quiz, int* userans);

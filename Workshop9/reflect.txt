@@ -1,0 +1,55 @@
+/*
+*****************************************************************************
+                            OOP244-Reflection
+Full Name  : Travis Liu
+e-mail     : tliu84@myseneca.ca
+Student ID#: 156740201
+Date       : 26 July, 2022
+Section    : ZCC
+
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+I learnt the following concepts in this workshop :-
+1.Derive a class with resource from a base class which also includes a dynamic cString.
+eg- class FullName : public Name {
+        char* m_value;
+    public:
+.
+.
+.
+virtual std::ostream& display(std::ostream& ostr = std::cout)const;  // If the FullName is not empty it will insert the Name, one space and then the m_value of the FullName into the ostream reference without going to the new line.Then it will return the ostream reference.
+        virtual std::istream& read(std::istream& istr = std::cin);  // Reads the Name and then dynamically reads a Cstring into the m_value of FullName from istream until it reaches the newline character.The newline character is removed from istream and the istream reference is returned.
+    };
+In the above example, FullName is a derived class and also includes base class resources
+like m_value which is a dynamic cString and methods like "virtual std::ostream& display(std::ostream& ostr = std::cout)const"
+and "virtual std::istream& read(std::istream& istr = std::cin)".
+
+
+2.Override virtual an non-virtual methods of the base class.
+eg-Name::operator=(name);
+This example is of override of non-virtual method of base class, the base class name(Name) is
+used to target the base class assignment operator overload.
+
+Name::display(ostr);
+Similarly, a virtual method is also override by using the base class name. Like how the
+method 'display' which is a virtual function is overloaded.
+
+
+3.Apply the rule of three to the base and the derived class.
+eg-~FullName();
+    FullName(FullName& name);
+    void operator=(const FullName& name);
+The rule of three is the use of copy constructors, copy assignment operators and destructors to
+ensure that there is no memory leak. In the destructor, I delete all dynamically allocated memory
+and in copy assignment and cunstructors, I point the 'm_value' to a new dynamic memory rather than the
+reference to copied memory which leads to memory leak when the reference of the copied memory is deleted.
+
+
+4.To read and write dynamic data from dynamic memory into data files.
+eg-Name::display(ostr);
+   ostr << " " << m_value;
+In the above example, ostr is an ostream object but of stream is derived from ostream therefore,
+ostr can also be used as an ofstream object which is being used to print a space and m_value to
+the data file.

@@ -1,0 +1,96 @@
+/*
+*****************************************************************************
+				OOP244-Reflection
+Full Name  : Travis Liu
+e-mail     : tliu84@myseneca.ca
+Student ID#: 156740201
+Date       : 26 May, 2022
+Section    : ZCC
+
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+I mainly learnt three things in this workshop:
+1. How to overload functions.
+2. Use of dynamic memory allocation and it's management.
+3. Use references to pass the value of variable rather than addresses.
+
+
+1.Overload functions are functions that share the same name but have different
+functionalities. Fuctions can be overloaded by passing different number of and/or
+different types of parameters.
+eg - void display() {
+        sort();
+        for (int i = 0; i < noOfStudents; i++)
+        {
+            cout << i + 1 << ": ";
+            display(students[i]);
+        }
+    }
+
+void display(const struct Student& student) {
+        cout << student.m_name << ", " << student.m_studentNumber << ": " << student.m_grade << endl;
+    }
+In the above example from my code, I used 'display' identifier for to functions with different
+functionalities but with a common objective of displaying the output on the screen. I referenced a
+structure student to 'void display(const struct Student& student)' and nothing to 'void display()',
+that's how the OS identifies an overload of function by checking what kind of parameter has been
+passed to it when it is called.
+
+
+2.Referencing the value is much useful than passing the address of a variable to a fuction because I
+didn't had to focus where the pointers are and when I had to use addresses of pointers. I could treat
+the variables as any normal variable.
+eg - bool read(int &m_studentNumber) {
+        if (fscanf(fptr, "%d,", &m_studentNumber))
+        {
+            return true;
+        }
+        return false;
+    }
+In the above example, the read function is taking the value of studentnumber in 'm_studentNumber' variable
+and using the fscanf to directly take the input from a file into the variable where I used '&m_studentNumber'
+to store the value rather than using 'm_studentNumber'(if 'm_studentNumber' were a pointer and its address
+were passed) which made it less confusing.
+
+
+3.I used dynamic memory allocation to allocate memory to an array at run time. A pointer is created at first
+which then points to a dynamic memory by using 'new' keyword to assign bytes of memory depending upon the type
+of pointer at run time.
+eg - employees = new Birthdate[employeenumbermonth];
+		int j = 0;
+		for (int i = 0; i < employeenumber; i++)
+		{
+			fscanf(fptr, "%[^,],%d/%d/%d\n", name, &employee.mm, &employee.dd, &employee.yyyy);
+			if (employee.mm == month)
+			{
+				employees[j].name = new char[strlen(name) + 1];
+				strcpy(employees[j].name, name);
+				employees[j].mm = employee.mm;
+				employees[j].dd = employee.dd;
+				employees[j].yyyy = employee.yyyy;
+				j++;
+			}
+		}
+I used dynamic memory allocation to allocate memory to a structure pointer 'employees' at run time as it was unknow,
+that how much data will be required to store in the birth dates of different employees in each month. Inside the
+dynamically allocated structure I again allocated memory to variable 'name' based on length of the data it was storing
+from the file.
+void deallocate() {
+		for (int i = 0; i < employeenumbermonth; i++)
+		{
+			delete[] employees[i].name;
+		}
+		delete[] employees;
+	}
+After finished using the dynamically allocated space I fried then using delete[]. First, I deallocated the names inside the
+employees structure one by one, then I deallocated the whole structure.
+
+I didn't deallocate the dynamic memory of 'name' inside the dynamically allocated structure employees. This was giving me
+memory leaks. I read the notes on dynamic memory on the seneca website again and reviewed the program to realize my mistake.
+for (int i = 0; i < employeenumbermonth; i++)
+		{
+			delete[] employees[i].name;
+		}
+I fixed the mistake by creating a for loop which deallocated every space that was being used by the 'name' one by one.

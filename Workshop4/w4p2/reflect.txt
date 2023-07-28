@@ -1,0 +1,77 @@
+/*
+*****************************************************************************
+			OOP244-Workshop-4, Rflection
+Full Name  : Travis Liu
+e-mail     : tliu84@myseneca.ca
+Student ID#: 156740201
+Date       : 9 June, 2022
+Section    : ZCC
+
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+In this workshop, I learnt the following:
+1. Create default and overloaded constructors
+eg-// Default constructor
+	CleanerBot::CleanerBot() {
+		location = nullptr;
+		battery = 0;
+		brush = 0;
+		active = false;
+	}
+
+	// 4 argument constructor
+	CleanerBot::CleanerBot(const char* loc, const double batt, const int bru, const bool act) {
+		if (loc != nullptr &&
+			batt != 0 &&
+			bru != 0)
+		{
+			location = new char[strlen(loc) + 1];
+			strcpy(location, loc);
+			battery = batt;
+			brush = bru;
+			active = act;
+		}
+		else {
+			location = nullptr;
+			battery = 0;
+			brush = 0;
+			active = false;
+		}
+	}
+
+I created default constructor by declaring by the class name and constructors have no return type.
+Afterwords, I created 4 argument constructor by passing some argumets. These constructors are called
+after the declaration of any object of the class. In the above example, I initialized the member
+variables of different elements of object array by calling the constructors.
+
+
+2. Create destructors
+eg-CleanerBot::~CleanerBot() {
+		delete[] location;
+	}
+
+A destructor is created by default and is executed when the object of class goes out of scope. '~' before
+the class name identifies a destructor. I the above example I am releasing all the memory occupied by the
+dynamic memory before the destructor destroys the memory of the object.
+
+
+3. Initialize class member variables
+eg-location = new char[strlen(loc) + 1];
+	strcpy(location, loc);
+	battery = batt;
+	brush = bru;
+	active = act;
+
+I the above example, I initialized the member variables of the class CleanerBot from the 4 argument
+constructor. Similarly, when no arguments are passed the default constructor is called and the member
+variables are initialized to a safe empty space.
+
+
+4. Release member pointers
+eg-CleanerBot::~CleanerBot() {
+		delete[] location;
+	}
+In the above example, I am releasing the memory occupied by the char pointer location from the dynamic
+memory before the object is destroyed by the destructor.
